@@ -24,8 +24,6 @@ body{
   place-items:center;
   background:var(--table);
   color:var(--ink);
-
-  /* Clean classic card font */
   font-family:
     "Optima",
     "Optima LT Std",
@@ -35,19 +33,14 @@ body{
     sans-serif;
 }
 
-/* soft spotlight */
 .stage{
   width:min(920px,96vw);
   padding:54px 18px;
-  border-radius:22px;
-  background:
-    radial-gradient(70% 50% at 50% 35%, rgba(255,255,255,.10), rgba(255,255,255,0)),
-    radial-gradient(40% 28% at 50% 72%, rgba(255,255,255,.06), rgba(255,255,255,0));
   display:grid;
   place-items:center;
 }
 
-/* card */
+/* CARD */
 .card{
   width:min(640px,96vw);
   aspect-ratio:1.9/1;
@@ -55,64 +48,44 @@ body{
   border-radius:12px;
   position:relative;
   overflow:hidden;
-
-  box-shadow:
-    0 32px 90px rgba(0,0,0,.62),
-    0 1px 0 rgba(255,255,255,.25) inset,
-    0 -1px 0 rgba(0,0,0,.05) inset;
+  box-shadow:0 32px 90px rgba(0,0,0,.62);
 }
 
-/* paper grain */
+/* paper texture */
 .card::before{
   content:"";
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0)),
-    repeating-linear-gradient(90deg, rgba(0,0,0,.012) 0 1px, rgba(0,0,0,0) 1px 7px),
-    repeating-linear-gradient(0deg, rgba(0,0,0,.010) 0 1px, rgba(0,0,0,0) 1px 10px);
-  mix-blend-mode:multiply;
-  opacity:.5;
+    repeating-linear-gradient(90deg, rgba(0,0,0,.012) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.010) 0 1px, transparent 1px 10px);
+  opacity:.4;
   pointer-events:none;
 }
 
-/* border (must not block clicks) */
-.card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border:1px solid rgba(0,0,0,.10);
-  border-radius:12px;
-  pointer-events:none;
-}
-
-/* layout */
-.pad{
-  position:absolute;
-  inset:0;
-  padding:52px 56px;
+/* MAIN GRID: header / body / footer */
+.layout{
+  height:100%;
   display:grid;
   grid-template-rows:auto 1fr auto;
+  padding:42px 52px; /* ← controls ALL spacing consistently */
 }
 
-/* top row */
-.top{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
   font-size:12px;
   letter-spacing:.22em;
   text-transform:uppercase;
   color:var(--muted);
 }
 
-.top-right{
-  text-align:right;
-}
-
-/* center */
+/* CENTER */
 .center{
-  text-align:center;
   align-self:center;
+  text-align:center;
 }
 
 .name{
@@ -126,9 +99,8 @@ body{
 .title{
   margin-top:14px;
   font-size:14px;
-  letter-spacing:.32em;
+  letter-spacing:.30em;
   text-transform:uppercase;
-  color:rgba(20,20,20,.8);
 }
 
 .tagline{
@@ -140,18 +112,16 @@ body{
 }
 
 .rule{
-  width:100%;
   height:1px;
   background:var(--hair2);
   margin:26px 0 18px;
 }
 
-/* buttons */
+/* BUTTONS */
 .actions{
   display:flex;
   justify-content:center;
   gap:12px;
-  flex-wrap:wrap;
 }
 
 a.btn{
@@ -161,43 +131,31 @@ a.btn{
   border-radius:10px;
   border:1px solid var(--hair);
   background:rgba(255,255,255,.2);
-  font-family:inherit;
   font-size:11px;
-  letter-spacing:.30em;
+  letter-spacing:.28em;
   text-transform:uppercase;
-
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.35) inset,
-    0 -1px 0 rgba(0,0,0,.04) inset;
-
   transition:.12s ease;
 }
 
 a.btn:hover{
-  transform:translateY(-1px);
   background:rgba(255,255,255,.35);
 }
 
-/* bottom */
-.bottom{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+/* FOOTER */
+.footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
   font-size:11px;
   letter-spacing:.26em;
   text-transform:uppercase;
   color:var(--muted);
-  align-items:end;
 }
 
-.bottom-right{
-  text-align:right;
-}
-
-.bottom a{
+.footer a{
   color:inherit;
   text-decoration:none;
   border-bottom:1px solid rgba(20,20,20,.18);
-  padding-bottom:2px;
 }
 </style>
 </head>
@@ -205,13 +163,15 @@ a.btn:hover{
 <body>
 <div class="stage">
   <div class="card">
-    <div class="pad">
+    <div class="layout">
 
-      <div class="top">
+      <!-- HEADER -->
+      <div class="header">
         <div>+971 50 497 3929</div>
-        <div class="top-right">Data Professional</div>
+        <div>Data Professional</div>
       </div>
 
+      <!-- CENTER -->
       <div class="center">
         <h1 class="name">Anthony Aziz Kurieh</h1>
         <div class="title">Data Professional</div>
@@ -226,9 +186,10 @@ a.btn:hover{
         </div>
       </div>
 
-      <div class="bottom">
+      <!-- FOOTER -->
+      <div class="footer">
         <div><a href="mailto:anthony.kurieh@outlook.com">anthony.kurieh@outlook.com</a></div>
-        <div class="bottom-right">Dubai, UAE</div>
+        <div>Dubai, UAE</div>
       </div>
 
     </div>
