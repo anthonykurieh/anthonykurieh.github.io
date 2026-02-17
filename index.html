@@ -1,148 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Anthony Kurieh</title>
+<title>Anthony Kurieh | Digital Business Card</title>
 
 <style>
-/* ---- Reset ---- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  :root{
+    --table:#0f0f10;
+    --paper:#f4f1ea;         /* warm off-white stock */
+    --ink:#121212;
+    --muted:#3f3f3f;
+    --hair:rgba(18,18,18,.18);
+    --hair2:rgba(18,18,18,.10);
+  }
 
-/* ---- Background (dark room effect) ---- */
-body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #0e0e0e;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  *{ box-sizing:border-box; }
 
-/* ---- Card ---- */
-.card {
-    width: 520px;
-    max-width: 90vw;
-    padding: 64px 56px;
-    background: #f5f5f2;
-    color: #111;
+  body{
+    margin:0;
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    background: var(--table);
+    color: var(--ink);
+  }
 
-    /* subtle physical feel */
+  /* “scene” lighting */
+  .stage{
+    width:min(860px, 94vw);
+    padding:44px 18px;
+    border-radius:22px;
+    background:
+      radial-gradient(70% 50% at 50% 35%, rgba(255,255,255,.10), rgba(255,255,255,0)),
+      radial-gradient(40% 28% at 50% 70%, rgba(255,255,255,.06), rgba(255,255,255,0));
+    display:grid;
+    place-items:center;
+    gap:18px;
+  }
+
+  .card{
+    width:min(560px, 94vw);
+    aspect-ratio: 1.85 / 1;           /* business card proportions */
+    background: var(--paper);
+    border-radius: 8px;
+    position: relative;
+    overflow:hidden;
+
+    /* depth */
     box-shadow:
-        0 25px 60px rgba(0,0,0,0.55),
-        0 1px 0 rgba(255,255,255,0.4) inset;
+      0 28px 70px rgba(0,0,0,.60),
+      0 1px 0 rgba(255,255,255,.22) inset,
+      0 -1px 0 rgba(0,0,0,.05) inset;
+  }
 
-    border-radius: 4px;
+  /* paper grain + subtle fiber */
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,0)),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.012) 0 1px, rgba(0,0,0,0) 1px 7px),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.010) 0 1px, rgba(0,0,0,0) 1px 9px);
+    mix-blend-mode:multiply;
+    opacity:.60;
+    pointer-events:none;
+  }
 
-    /* everything centered */
-    text-align: center;
-}
+  /* edge line like print stock */
+  .card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border:1px solid rgba(0,0,0,.10);
+    border-radius:8px;
+    pointer-events:none;
+  }
 
-/* ---- Name ---- */
-.name {
-    font-size: 28px;
-    letter-spacing: 3px;
-    font-weight: 500;
-}
+  .pad{
+    position:absolute;
+    inset:0;
+    padding:34px 38px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:12px;
+  }
 
-/* ---- Title ---- */
-.title {
-    margin-top: 14px;
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: #555;
+  /* top corners like the scene */
+  .top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    font-family: "Garamond", "Times New Roman", serif;
+    font-size:14px;
+    letter-spacing:.02em;
+    color: rgba(18,18,18,.75);
+  }
+
+  .top .right{
+    text-align:right;
+    line-height:1.15;
+  }
+
+  /* center block */
+  .center{
+    text-align:center;
+    margin-top:-4px;
+  }
+
+  .name{
+    font-family: "Garamond", "Times New Roman", serif;
+    font-size:30px;
+    letter-spacing:.04em;
+    font-weight:600;
+    margin:0;
+  }
+
+  .role{
+    font-family: "Garamond", "Times New Roman", serif;
+    margin-top:6px;
+    font-size:18px;
+    letter-spacing:.03em;
+    color: rgba(18,18,18,.88);
+  }
+
+  /* divider hairline */
+  .rule{
+    height:1px;
+    width:100%;
+    background: var(--hair2);
+    margin:12px 0 10px;
+  }
+
+  /* buttons: “printed” look, not app UI */
+  .actions{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:2px;
+  }
+
+  a.btn{
+    text-decoration:none;
+    color: var(--ink);
+    padding:10px 14px;
+    border-radius:8px;
+
+    /* understated frame */
+    border:1px solid rgba(18,18,18,.16);
+    background: rgba(255,255,255,.26);
+
+    /* typography matches card vibe */
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size:11px;
+    letter-spacing:.18em;
     text-transform: uppercase;
-}
 
-/* ---- Divider ---- */
-.rule {
-    width: 60px;
-    height: 1px;
-    background: rgba(0,0,0,0.25);
-    margin: 32px auto;
-}
+    /* slight “pressed ink” depth */
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.35) inset,
+      0 -1px 0 rgba(0,0,0,.04) inset;
+    transition: transform .12s ease, background .12s ease, border-color .12s ease;
+  }
 
-/* ---- Links ---- */
-.links {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
+  a.btn:hover{
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.40);
+    border-color: rgba(18,18,18,.22);
+  }
 
-.links a {
-    text-decoration: none;
-    color: #111;
-    font-size: 12px;
-    letter-spacing: 2px;
-    padding: 10px 0;
-    border-top: 1px solid rgba(0,0,0,0.12);
-    border-bottom: 1px solid rgba(0,0,0,0.12);
-    transition: background 0.2s ease;
-}
+  /* bottom line like the scene */
+  .bottom{
+    font-family: "Garamond", "Times New Roman", serif;
+    font-size:13px;
+    letter-spacing:.02em;
+    color: rgba(18,18,18,.72);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:12px;
+  }
 
-.links a:hover {
-    background: rgba(0,0,0,0.035);
-}
+  .bottom .smallcaps{
+    font-variant: small-caps;
+    letter-spacing:.06em;
+    color: rgba(18,18,18,.58);
+  }
 
-/* ---- Contact ---- */
-.contact {
-    margin-top: 34px;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    color: #444;
-    line-height: 1.8;
-}
+  /* keep links on the page, but not blue/underlined */
+  .bottom a{
+    color: inherit;
+    text-decoration:none;
+    border-bottom: 1px solid rgba(18,18,18,.18);
+  }
 
-/* ---- Small footer line ---- */
-.footer {
-    margin-top: 40px;
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: rgba(0,0,0,0.45);
-    text-transform: uppercase;
-}
+  @media (max-width: 420px){
+    .pad{ padding:28px 22px; }
+    .name{ font-size:26px; }
+    .role{ font-size:16px; }
+    .top{ font-size:13px; }
+  }
 </style>
 </head>
 
 <body>
+  <div class="stage">
+    <div class="card" role="region" aria-label="Anthony Kurieh digital business card">
+      <div class="pad">
 
-<div class="card">
+        <!-- Top corners (scene style) -->
+        <div class="top">
+          <div class="left">+961 50 497 3929</div>
+          <div class="right">
+            <div>Anthony Kurieh</div>
+            <div style="opacity:.85;">Data & Analytics</div>
+          </div>
+        </div>
 
-    <div class="name">ANTHONY KURIEH</div>
+        <!-- Center (Bateman composition) -->
+        <div class="center">
+          <h1 class="name">Anthony Aziz KURIEH</h1>
+          <div class="role">Data Professional</div>
 
-    <div class="title">Data Professional</div>
+          <div class="rule"></div>
 
-    <div class="rule"></div>
+          <!-- Buttons (kept, but “printed”) -->
+          <div class="actions">
+            <a class="btn" href="https://www.linkedin.com/in/anthony-kurieh/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+            <a class="btn" href="contact.vcf">Save Contact</a>
+            <a class="btn" href="mailto:anthony.kurieh@outlook.com">Email</a>
+          </div>
+        </div>
 
-    <div class="links">
-        <a href="https://www.linkedin.com/in/anthony-kurieh/" target="_blank">
-            LinkedIn
-        </a>
+        <!-- Bottom line -->
+        <div class="bottom">
+          <div>
+            <a href="mailto:anthony.kurieh@outlook.com">anthony.kurieh@outlook.com</a>
+          </div>
+          <div class="smallcaps">Dubai · Available Globally</div>
+        </div>
 
-        <a href="cv.pdf" target="_blank">
-            Curriculum Vitae
-        </a>
-
-        <a href="contact.vcf">
-            Save Contact
-        </a>
+      </div>
     </div>
-
-    <div class="contact">
-        anthony.kurieh@outlook.com<br>
-        +961 50 497 3929
-    </div>
-
-    <div class="footer">
-        Dubai · Available Globally
-    </div>
-
-</div>
-
+  </div>
 </body>
 </html>
