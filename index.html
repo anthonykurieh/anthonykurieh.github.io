@@ -3,240 +3,236 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Anthony Aziz Kurieh | Data Professional</title>
-
-<!-- Clean modern font with precise spacing -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Anthony Aziz Kurieh</title>
 
 <style>
-  :root{
-    --table:#0f0f10;
-    --paper:#f4f1ea;
-    --ink:#151515;
-    --muted:rgba(21,21,21,.70);
-    --hair:rgba(21,21,21,.14);
-    --hair2:rgba(21,21,21,.09);
-  }
+:root{
+  --table:#0f0f10;
+  --paper:#f4f1ea;
+  --ink:#141414;
+  --muted:rgba(20,20,20,.65);
+  --hair:rgba(20,20,20,.14);
+  --hair2:rgba(20,20,20,.09);
+}
 
-  *{ box-sizing:border-box; }
+*{ box-sizing:border-box; }
 
-  body{
-    margin:0;
-    min-height:100vh;
-    display:grid;
-    place-items:center;
-    background:var(--table);
-    color:var(--ink);
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  }
+body{
+  margin:0;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  background:var(--table);
+  color:var(--ink);
 
-  /* subtle spotlight */
-  .stage{
-    width:min(920px, 96vw);
-    padding:52px 18px;
-    border-radius:22px;
-    background:
-      radial-gradient(70% 50% at 50% 35%, rgba(255,255,255,.11), rgba(255,255,255,0)),
-      radial-gradient(40% 28% at 50% 72%, rgba(255,255,255,.06), rgba(255,255,255,0));
-    display:grid;
-    place-items:center;
-  }
+  /* Clean classic card font */
+  font-family:
+    "Optima",
+    "Optima LT Std",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
 
-  .card{
-    width:min(640px, 96vw);
-    aspect-ratio: 1.85 / 1; /* less wide, more business-card */
-    background:var(--paper);
-    border-radius:12px;
-    position:relative;
-    overflow:hidden;
+/* soft spotlight */
+.stage{
+  width:min(920px,96vw);
+  padding:54px 18px;
+  border-radius:22px;
+  background:
+    radial-gradient(70% 50% at 50% 35%, rgba(255,255,255,.10), rgba(255,255,255,0)),
+    radial-gradient(40% 28% at 50% 72%, rgba(255,255,255,.06), rgba(255,255,255,0));
+  display:grid;
+  place-items:center;
+}
 
-    box-shadow:
-      0 32px 90px rgba(0,0,0,.62),
-      0 1px 0 rgba(255,255,255,.25) inset,
-      0 -1px 0 rgba(0,0,0,.05) inset;
-  }
+/* card */
+.card{
+  width:min(640px,96vw);
+  aspect-ratio:1.9/1;
+  background:var(--paper);
+  border-radius:12px;
+  position:relative;
+  overflow:hidden;
 
-  /* paper grain */
-  .card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0)),
-      repeating-linear-gradient(90deg, rgba(0,0,0,.012) 0 1px, rgba(0,0,0,0) 1px 7px),
-      repeating-linear-gradient(0deg, rgba(0,0,0,.010) 0 1px, rgba(0,0,0,0) 1px 10px);
-    mix-blend-mode:multiply;
-    opacity:.55;
-    pointer-events:none;
-  }
+  box-shadow:
+    0 32px 90px rgba(0,0,0,.62),
+    0 1px 0 rgba(255,255,255,.25) inset,
+    0 -1px 0 rgba(0,0,0,.05) inset;
+}
 
-  /* IMPORTANT: don’t steal clicks */
-  .card::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border:1px solid rgba(0,0,0,.10);
-    border-radius:12px;
-    pointer-events:none;
-  }
+/* paper grain */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0)),
+    repeating-linear-gradient(90deg, rgba(0,0,0,.012) 0 1px, rgba(0,0,0,0) 1px 7px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.010) 0 1px, rgba(0,0,0,0) 1px 10px);
+  mix-blend-mode:multiply;
+  opacity:.5;
+  pointer-events:none;
+}
 
-  .pad{
-    position:absolute;
-    inset:0;
-    padding:54px 56px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    gap:18px;
-  }
+/* border (must not block clicks) */
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:12px;
+  pointer-events:none;
+}
 
-  /* top row */
-  .top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    font-size:12px;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color:var(--muted);
-  }
-  .top .right{
-    text-align:right;
-  }
+/* layout */
+.pad{
+  position:absolute;
+  inset:0;
+  padding:52px 56px;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+}
 
-  /* center block */
-  .center{
-    text-align:center;
-    margin-top:-6px; /* subtle lift like the scene */
-  }
+/* top row */
+.top{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
 
-  .name{
-    margin:0;
-    font-size:34px;
-    font-weight:600;
-    letter-spacing:.10em;
-    text-transform:uppercase;
-  }
+.top-right{
+  text-align:right;
+}
 
-  .title{
-    margin-top:14px;
-    font-size:14px;
-    font-weight:500;
-    letter-spacing:.28em;
-    text-transform:uppercase;
-    color:rgba(21,21,21,.82);
-  }
+/* center */
+.center{
+  text-align:center;
+  align-self:center;
+}
 
-  .tagline{
-    margin-top:12px;
-    font-size:11px;
-    font-weight:500;
-    letter-spacing:.34em;
-    text-transform:uppercase;
-    color:rgba(21,21,21,.52);
-  }
+.name{
+  margin:0;
+  font-size:34px;
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
 
-  .rule{
-    width:100%;
-    height:1px;
-    background:var(--hair2);
-    margin:26px 0 18px;
-  }
+.title{
+  margin-top:14px;
+  font-size:14px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:rgba(20,20,20,.8);
+}
 
-  /* buttons: clean, “printed” feel */
-  .actions{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px;
-  }
+.tagline{
+  margin-top:12px;
+  font-size:11px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:rgba(20,20,20,.5);
+}
 
-  a.btn{
-    text-decoration:none;
-    color:var(--ink);
-    padding:12px 18px;
-    border-radius:10px;
-    border:1px solid var(--hair);
-    background:rgba(255,255,255,.18);
-    font-family:inherit;
-    font-size:11px;
-    font-weight:500;
-    letter-spacing:.30em;
-    text-transform:uppercase;
+.rule{
+  width:100%;
+  height:1px;
+  background:var(--hair2);
+  margin:26px 0 18px;
+}
 
-    box-shadow:
-      0 1px 0 rgba(255,255,255,.35) inset,
-      0 -1px 0 rgba(0,0,0,.04) inset;
+/* buttons */
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-    transition: transform .12s ease, background .12s ease, border-color .12s ease;
-  }
+a.btn{
+  text-decoration:none;
+  color:var(--ink);
+  padding:12px 18px;
+  border-radius:10px;
+  border:1px solid var(--hair);
+  background:rgba(255,255,255,.2);
+  font-family:inherit;
+  font-size:11px;
+  letter-spacing:.30em;
+  text-transform:uppercase;
 
-  a.btn:hover{
-    transform:translateY(-1px);
-    background:rgba(255,255,255,.34);
-    border-color:rgba(21,21,21,.20);
-  }
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.35) inset,
+    0 -1px 0 rgba(0,0,0,.04) inset;
 
-  /* bottom row */
-  .bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    gap:14px;
-    font-size:11px;
-    letter-spacing:.26em;
-    text-transform:uppercase;
-    color:var(--muted);
-  }
+  transition:.12s ease;
+}
 
-  .bottom a{
-    color:inherit;
-    text-decoration:none;
-    border-bottom:1px solid rgba(21,21,21,.18);
-    padding-bottom:2px;
-  }
+a.btn:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.35);
+}
 
-  @media (max-width:520px){
-    .pad{ padding:40px 26px; }
-    .name{ font-size:28px; }
-  }
+/* bottom */
+.bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  font-size:11px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--muted);
+  align-items:end;
+}
+
+.bottom-right{
+  text-align:right;
+}
+
+.bottom a{
+  color:inherit;
+  text-decoration:none;
+  border-bottom:1px solid rgba(20,20,20,.18);
+  padding-bottom:2px;
+}
 </style>
 </head>
 
 <body>
-  <div class="stage">
-    <div class="card" role="region" aria-label="Digital business card">
-      <div class="pad">
+<div class="stage">
+  <div class="card">
+    <div class="pad">
 
-        <div class="top">
-          <div>+971 50 497 3929</div>
-          <div class="right">Data Professional</div>
-        </div>
-
-        <div class="center">
-          <h1 class="name">Anthony Aziz Kurieh</h1>
-          <div class="title">Data Professional</div>
-          <div class="tagline">Less Noise, More Signal</div>
-
-          <div class="rule"></div>
-
-          <div class="actions">
-            <a class="btn" href="https://www.linkedin.com/in/anthony-kurieh/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn" href="cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
-            <a class="btn" href="contact.vcf" rel="noopener">Save Contact</a>
-          </div>
-        </div>
-
-        <div class="bottom">
-          <div><a href="mailto:anthony.kurieh@outlook.com">anthony.kurieh@outlook.com</a></div>
-          <div>Dubai · Available Globally</div>
-        </div>
-
+      <div class="top">
+        <div>+971 50 497 3929</div>
+        <div class="top-right">Data Professional</div>
       </div>
+
+      <div class="center">
+        <h1 class="name">Anthony Aziz Kurieh</h1>
+        <div class="title">Data Professional</div>
+        <div class="tagline">Less Noise, More Signal</div>
+
+        <div class="rule"></div>
+
+        <div class="actions">
+          <a class="btn" href="https://www.linkedin.com/in/anthony-kurieh/" target="_blank">LinkedIn</a>
+          <a class="btn" href="cv.pdf" target="_blank">CV (PDF)</a>
+          <a class="btn" href="contact.vcf">Save Contact</a>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div><a href="mailto:anthony.kurieh@outlook.com">anthony.kurieh@outlook.com</a></div>
+        <div class="bottom-right">Dubai, UAE</div>
+      </div>
+
     </div>
   </div>
+</div>
 </body>
 </html>
